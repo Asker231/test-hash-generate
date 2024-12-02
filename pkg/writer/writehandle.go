@@ -17,3 +17,4 @@ func WriteHandle[T any](data... T){
 		fmt.Println(err)
 	}
 }
+
