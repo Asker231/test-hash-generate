@@ -7,14 +7,29 @@ import (
 )
 
 
-
-func WriteHandle[T any](data... T){
-	arr := []T{}
-	arr = append(arr, data...)
-	dByte,_ := json.Marshal(arr)
-	err := os.WriteFile("db.json",dByte,0644)
+const filename = "db.json"
+func WriteHandle[T any](data T){
+	payloads := []T{}
+	jsonData := Reader(filename)
+	err := json.Unmarshal(jsonData,&payloads)
 	if err != nil{
 		fmt.Println(err)
 	}
+	payloads = append(payloads, data)
+	arrbyte ,err:= json.Marshal(&payloads)
+	if err != nil{
+		fmt.Println(err)
+	}
+	_ = os.WriteFile(filename,arrbyte,0644)
 }
+func Reader(filename string)[]byte{
+	data,err := os.ReadFile(filename)
+	if err != nil{
+		fmt.Println(err)
+	}
+	return data
+}
+
+
+
 

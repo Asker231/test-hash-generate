@@ -9,5 +9,6 @@ import (
 func main() {
 	person := user.NewUser("Asker","Googlse.com");
 	person2 := user.NewUser("Jhon","Googles.com");
-	writer.WriteHandle(*person,*person2)
+	writer.WriteHandle(*person)
+	writer.WriteHandle(*person2)
 }
